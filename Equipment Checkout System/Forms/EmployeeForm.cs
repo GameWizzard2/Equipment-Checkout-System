@@ -1,4 +1,6 @@
-﻿using Equipment_Checkout_System.Services;
+﻿using Equipment_Checkout_System.Models;
+using Equipment_Checkout_System.Services;
+using Equipment_Checkout_System.Services;
 using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
@@ -10,7 +12,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using Equipment_Checkout_System.Services;
 
 namespace Equipment_Checkout_System.Forms
 {
@@ -38,12 +39,11 @@ namespace Equipment_Checkout_System.Forms
             labelUser.Text = $"{currentUser.FirstName} {currentUser.LastName}";
 
             // List available tools to checkout
-            List<int> availableToolIds = _toolAvailabilityService.GetAvailableToolIds();
-
+            List<ToolInfo> availableTools = _toolAvailabilityService.GetAvailableTools();
             listBoxAvailableTools.Items.Clear();
-            foreach (int id in availableToolIds)
+            foreach (ToolInfo tool in availableTools)
             {
-                listBoxAvailableTools.Items.Add($"Tool ID: {id}");
+                listBoxAvailableTools.Items.Add(tool);
             }
         }
 
