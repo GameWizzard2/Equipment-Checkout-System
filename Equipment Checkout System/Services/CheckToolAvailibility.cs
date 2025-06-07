@@ -8,10 +8,11 @@ namespace Equipment_Checkout_System.Services
     internal class CheckToolAvailibility
     {
         private readonly string _connectionString;
+        string connStr = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\ECSCEIS400.accdb";
 
         public CheckToolAvailibility(string connectionString)
         {
-            _connectionString = connectionString;
+            _connectionString = connStr;
         }
 
         /// Gets a list of tools (ID and name) that are available for checkout.
