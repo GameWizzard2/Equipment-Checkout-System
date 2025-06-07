@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36202.13 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Equipment Checkout System", "Equipment Checkout System\Equipment Checkout System.csproj", "{077632A9-A8FD-4437-9E1C-121130445BBA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{077632A9-A8FD-4437-9E1C-121130445BBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{077632A9-A8FD-4437-9E1C-121130445BBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{077632A9-A8FD-4437-9E1C-121130445BBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{077632A9-A8FD-4437-9E1C-121130445BBA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3F2A2C2B-F0DD-43D6-93F5-578F11787F5D}
+	EndGlobalSection
+EndGlobal
