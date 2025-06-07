@@ -35,11 +35,12 @@
             label2 = new Label();
             labelCheckedOutTools = new Label();
             label1 = new Label();
+            listBoxAvailableTools = new ListBox();
             SuspendLayout();
             // 
             // buttonCheckout
             // 
-            buttonCheckout.Location = new Point(368, 296);
+            buttonCheckout.Location = new Point(526, 318);
             buttonCheckout.Name = "buttonCheckout";
             buttonCheckout.Size = new Size(112, 34);
             buttonCheckout.TabIndex = 0;
@@ -49,7 +50,7 @@
             // 
             // buttonCheckin
             // 
-            buttonCheckin.Location = new Point(111, 274);
+            buttonCheckin.Location = new Point(111, 294);
             buttonCheckin.Name = "buttonCheckin";
             buttonCheckin.Size = new Size(112, 34);
             buttonCheckin.TabIndex = 1;
@@ -104,11 +105,21 @@
             label1.TabIndex = 6;
             label1.Text = "User:";
             // 
+            // listBoxAvailableTools
+            // 
+            listBoxAvailableTools.FormattingEnabled = true;
+            listBoxAvailableTools.ItemHeight = 25;
+            listBoxAvailableTools.Location = new Point(494, 166);
+            listBoxAvailableTools.Name = "listBoxAvailableTools";
+            listBoxAvailableTools.Size = new Size(180, 129);
+            listBoxAvailableTools.TabIndex = 7;
+            // 
             // EmployeeForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(listBoxAvailableTools);
             Controls.Add(label1);
             Controls.Add(labelCheckedOutTools);
             Controls.Add(label2);
@@ -132,5 +143,6 @@
         private Label label2;
         private Label labelCheckedOutTools;
         private Label label1;
+        private ListBox listBoxAvailableTools;
     }
 }
