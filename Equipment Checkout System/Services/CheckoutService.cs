@@ -9,7 +9,7 @@ namespace Equipment_Checkout_System.Services
 {
     public class CheckoutService
     {
-       
+
         private readonly string _connectionString;
 
         public CheckoutService(string connectionString)
@@ -39,5 +39,33 @@ namespace Equipment_Checkout_System.Services
                 }
             }
         }
+
+        public void CheckInTool(int equipmentId, int employeeId, int conditionIn, DateTime checkedIN)
+        {
+            using (var conn = new OleDbConnection(_connectionString))
+            {
+                conn.Open();
+
+                string query = @"
+                UPDATE Checkouts
+                    SET [CheckedIN] = ?, [ConditionIn] = ?, [ReturnedBy] = ?
+                    WHERE [EquipmentID] = ? AND [EmployeeID] = ? AND [CheckedIN] IS NULL";
+
+                using (var cmd = new OleDbCommand(query, conn))
+                {
+                    cmd.Parameters.Add("?", OleDbType.Date).Value = checkedIN;        // CheckedIN
+                    cmd.Parameters.Add("?", OleDbType.Integer).Value = conditionIn;   // ConditionIn (e.g., 2 = Good)
+                    cmd.Parameters.Add("?", OleDbType.Integer).Value = employeeId;    // ReturnedBy
+                    cmd.Parameters.Add("?", OleDbType.Integer).Value = equipmentId;   // EquipmentID
+                    cmd.Parameters.Add("?", OleDbType.Integer).Value = employeeId;    // EmployeeID
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
+
+
+
+
 }

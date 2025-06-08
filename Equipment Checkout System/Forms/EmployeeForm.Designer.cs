@@ -36,6 +36,7 @@
             labelCheckedOutTools = new Label();
             label1 = new Label();
             listBoxAvailableTools = new ListBox();
+            listBoxCheckedOutTools = new ListBox();
             SuspendLayout();
             // 
             // buttonCheckout
@@ -56,6 +57,7 @@
             buttonCheckin.TabIndex = 1;
             buttonCheckin.Text = "Checkin";
             buttonCheckin.UseVisualStyleBackColor = true;
+            buttonCheckin.Click += buttonCheckin_Click;
             // 
             // labelUser
             // 
@@ -114,11 +116,22 @@
             listBoxAvailableTools.Size = new Size(180, 129);
             listBoxAvailableTools.TabIndex = 7;
             // 
+            // listBoxCheckedOutTools
+            // 
+            listBoxCheckedOutTools.FormattingEnabled = true;
+            listBoxCheckedOutTools.ItemHeight = 25;
+            listBoxCheckedOutTools.Location = new Point(82, 133);
+            listBoxCheckedOutTools.Name = "listBoxCheckedOutTools";
+            listBoxCheckedOutTools.Size = new Size(180, 129);
+            listBoxCheckedOutTools.TabIndex = 8;
+            listBoxCheckedOutTools.SelectedIndexChanged += listBoxCheckedOutTools_SelectedIndexChanged;
+            // 
             // EmployeeForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(listBoxCheckedOutTools);
             Controls.Add(listBoxAvailableTools);
             Controls.Add(label1);
             Controls.Add(labelCheckedOutTools);
@@ -144,5 +157,6 @@
         private Label labelCheckedOutTools;
         private Label label1;
         private ListBox listBoxAvailableTools;
+        private ListBox listBoxCheckedOutTools;
     }
 }

@@ -12,7 +12,7 @@ namespace Equipment_Checkout_System.Services
 
         public CheckToolAvailibility(string connectionString)
         {
-            _connectionString = connStr;
+            _connectionString = connectionString;
         }
 
         /// Gets a list of tools (ID and name) that are available for checkout.
@@ -69,5 +69,44 @@ namespace Equipment_Checkout_System.Services
 
             return availableTools;
         }
+
+
+        public List<ToolInfo> GetCheckedOutToolsByUser(int employeeId)
+        {
+            var tools = new List<ToolInfo>();
+
+            using (OleDbConnection conn = new OleDbConnection(_connectionString))
+            {
+                conn.Open();
+
+                string query = @"
+                    SELECT t.EquipmentID, t.EquipmentName
+                    FROM Tools t
+                    INNER JOIN Checkouts c ON t.EquipmentID = c.EquipmentID
+                    WHERE c.EmployeeID = ? AND (c.ConditionIn IS NULL OR c.ConditionIn = 6)";
+
+                using (OleDbCommand cmd = new OleDbCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("?", employeeId);
+
+                    using (OleDbDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            tools.Add(new ToolInfo
+                            {
+                                EquipmentID = reader.GetInt32(0),
+                                EquipmentName = reader.GetString(1)
+                            });
+                        }
+                    }
+                }
+            }
+
+            return tools;
+
+        }
+
     }
+
 }

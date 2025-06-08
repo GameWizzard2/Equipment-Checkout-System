@@ -37,7 +37,7 @@ namespace Equipment_Checkout_System.Forms
                 int employeeId = currentUser.EmployeeID;
                 int equipmentId = selectedTool.EquipmentID;
                 DateTime checkedOut = DateTime.Today;
-                DateTime returnBy = checkedOut.AddDays(1); 
+                DateTime returnBy = checkedOut.AddDays(1);
 
                 var checkoutService = new CheckoutService(_connectionString); // Make sure connection string is accessible
                 checkoutService.CheckOutTool(employeeId, equipmentId, checkedOut, returnBy, "New");
@@ -58,6 +58,7 @@ namespace Equipment_Checkout_System.Forms
 
             // List available tools to checkout
             RefreshAvailableToolList();
+            RefreshCheckedOutToolList();
         }
 
         private void labelUser_Click(object sender, EventArgs e)
@@ -73,17 +74,54 @@ namespace Equipment_Checkout_System.Forms
         {
 
         }
-    
+
 
         private void RefreshAvailableToolList()
         {
-                listBoxAvailableTools.Items.Clear();
+            listBoxAvailableTools.Items.Clear();
             List<ToolInfo> availableTools = _toolAvailabilityService.GetAvailableTools();
             listBoxAvailableTools.Items.Clear();
             foreach (ToolInfo tool in availableTools)
             {
                 listBoxAvailableTools.Items.Add(tool);
             }
+        }
+
+        private void buttonCheckin_Click(object sender, EventArgs e)
+        {
+            if (listBoxCheckedOutTools.SelectedItem is ToolInfo selectedTool)
+            {
+                var service = new CheckoutService(_connectionString);
+                DateTime returnedOn = DateTime.Now;
+                service.CheckInTool(selectedTool.EquipmentID, currentUser.EmployeeID, 1, returnedOn); //Fixme 1 represents the condition that the tool is in. replace with a dropdown list for user to select.
+
+                MessageBox.Show($"Returned: {selectedTool.EquipmentName}");
+
+                RefreshCheckedOutToolList();
+                RefreshAvailableToolList();
+            }
+            else
+            {
+                MessageBox.Show("Select a tool to return.");
+            }
+        }
+
+        private void RefreshCheckedOutToolList()
+        {
+            listBoxCheckedOutTools.Items.Clear();
+
+            var checkedOutTools = _toolAvailabilityService.GetCheckedOutToolsByUser(currentUser.EmployeeID);
+
+            foreach (var tool in checkedOutTools)
+            {
+                listBoxCheckedOutTools.Items.Add(tool); // ToolInfo.ToString() will display name
+            }
+        }
+
+
+        private void listBoxCheckedOutTools_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
         }
     }
 }
