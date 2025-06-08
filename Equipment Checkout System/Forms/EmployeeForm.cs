@@ -44,12 +44,13 @@ namespace Equipment_Checkout_System.Forms
 
                 MessageBox.Show($"{selectedTool.EquipmentName} checked out successfully!", "Success");
 
-                RefreshAvailableToolList();
             }
             else
             {
                 MessageBox.Show("Please select a tool to check out.");
             }
+            RefreshAvailableToolList();
+            RefreshCheckedOutToolList();
         }
 
         private void EmployeeForm_Load(object sender, EventArgs e)
@@ -80,7 +81,7 @@ namespace Equipment_Checkout_System.Forms
         {
             listBoxAvailableTools.Items.Clear();
             List<ToolInfo> availableTools = _toolAvailabilityService.GetAvailableTools();
-            listBoxAvailableTools.Items.Clear();
+            
             foreach (ToolInfo tool in availableTools)
             {
                 listBoxAvailableTools.Items.Add(tool);
@@ -97,13 +98,13 @@ namespace Equipment_Checkout_System.Forms
 
                 MessageBox.Show($"Returned: {selectedTool.EquipmentName}");
 
-                RefreshCheckedOutToolList();
-                RefreshAvailableToolList();
             }
             else
             {
                 MessageBox.Show("Select a tool to return.");
             }
+            RefreshCheckedOutToolList();
+            RefreshAvailableToolList();
         }
 
         private void RefreshCheckedOutToolList()
