@@ -16,17 +16,17 @@ namespace Equipment_Checkout_System.Services
         }
 
         /// Gets a list of tools (ID and name) that are available for checkout.
-        public List<ToolInfo> GetAvailableTools()
+        public List<ToolInfo> GetAvailableTools(int employeeSkillLevel)
         {
             var availableTools = new List<ToolInfo>();
-            var allTools = new Dictionary<int, string>();
+            var allTools = new Dictionary<int, Tuple<string, int>>(); // ID, (Name, SkillRequired)
 
             using (OleDbConnection conn = new OleDbConnection(_connectionString))
             {
                 conn.Open();
 
-                // Load all tools and their names
-                string allToolsQuery = "SELECT EquipmentID, [EquipmentName] FROM Tools";
+                // 1. Load all tools and required skill level
+                string allToolsQuery = "SELECT EquipmentID, EquipmentName, SkillRequired FROM Tools";
                 using (OleDbCommand cmd = new OleDbCommand(allToolsQuery, conn))
                 using (OleDbDataReader reader = cmd.ExecuteReader())
                 {
@@ -34,14 +34,15 @@ namespace Equipment_Checkout_System.Services
                     {
                         int id = reader.GetInt32(0);
                         string name = reader.GetString(1);
-                        allTools[id] = name;
+                        int skillRequired = reader.GetInt32(2);
+                        allTools[id] = Tuple.Create(name, skillRequired);
                     }
                 }
 
-                // Get equipment IDs that are checked out and not returned (ConditionIn is NULL or status code 6)
+                // 2. Load checked out equipment IDs
                 string checkedOutQuery = @"
                     SELECT EquipmentID FROM Checkouts
-                    WHERE [ConditionIn] IS NULL OR [ConditionIn] = 6";
+                    WHERE CheckedIN IS NULL OR ConditionIn = 6";
 
                 var checkedOutIds = new HashSet<int>();
                 using (OleDbCommand cmd = new OleDbCommand(checkedOutQuery, conn))
@@ -53,15 +54,15 @@ namespace Equipment_Checkout_System.Services
                     }
                 }
 
-                // Build list of tools that are not checked out
+                // 3. Build list of available tools within skill level
                 foreach (var kvp in allTools)
                 {
-                    if (!checkedOutIds.Contains(kvp.Key))
+                    if (!checkedOutIds.Contains(kvp.Key) && kvp.Value.Item2 <= employeeSkillLevel)
                     {
                         availableTools.Add(new ToolInfo
                         {
                             EquipmentID = kvp.Key,
-                            EquipmentName = kvp.Value
+                            EquipmentName = kvp.Value.Item1
                         });
                     }
                 }
@@ -69,6 +70,7 @@ namespace Equipment_Checkout_System.Services
 
             return availableTools;
         }
+
 
 
         public List<ToolInfo> GetCheckedOutToolsByUser(int employeeId)

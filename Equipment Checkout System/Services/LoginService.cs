@@ -31,12 +31,14 @@ namespace Equipment_Checkout_System.Models
                         {
                             if (reader.Read())
                             {
+                                // Get Employee Data if exist
                                 return new Employee
                                 {
                                     Success = true,
                                     EmployeeID = Convert.ToInt32(reader["EmployeeID"]),
                                     FirstName = reader["FirstName"].ToString(),
                                     LastName = reader["LastName"].ToString(),
+                                    SkillLevel = Convert.ToInt32(reader["EmployeeSkillLevel"]),
                                     Role = reader["Role"].ToString()
                                 };
                             }

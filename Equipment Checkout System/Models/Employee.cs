@@ -11,6 +11,8 @@ public class Employee
     public int EmployeeID { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
+
+    public int SkillLevel { get; set; }
     public string Role { get; set; }
     public string ErrorMessage { get; set; }
 }

@@ -80,7 +80,7 @@ namespace Equipment_Checkout_System.Forms
         private void RefreshAvailableToolList()
         {
             listBoxAvailableTools.Items.Clear();
-            List<ToolInfo> availableTools = _toolAvailabilityService.GetAvailableTools();
+            List<ToolInfo> availableTools = _toolAvailabilityService.GetAvailableTools(currentUser.SkillLevel);
             
             foreach (ToolInfo tool in availableTools)
             {
