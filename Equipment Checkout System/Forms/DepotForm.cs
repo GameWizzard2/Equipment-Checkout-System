@@ -13,17 +13,18 @@ using Equipment_Checkout_System.Data;
 
 namespace Equipment_Checkout_System.Forms;
 
+// Form for managing tool and employee creation in the Depot
 public partial class DepotForm : Form
 {
+    // Centralized database connection string
     private readonly string _connectionString = AppConfig.ConnectionString;
 
     public DepotForm()
     {
         InitializeComponent();
-
     }
 
-
+    // Executes on form load
     private void DepotForm_Load(object sender, EventArgs e)
     {
         // Load skill Selection for Tool Additions
@@ -39,26 +40,30 @@ public partial class DepotForm : Form
         cmbRoleSelection.SelectedIndex = 0;
     }
 
+    // Adds tool to the database when button is clicked
     private void buttonAddTool_Click(object sender, EventArgs e)
     {
         string toolName = txtToolName.Text.Trim();
 
-        // Get skillRequired from ComboBox
+        // Verify skill level is selected.
         if (cmbSkillRequired.SelectedItem == null)
         {
             MessageBox.Show("Please select a skill level.");
             return;
         }
 
+
         int skillRequired = Convert.ToInt32(cmbSkillRequired.SelectedItem);
         decimal toolPrice = numToolPrice.Value;
 
+        // Check if tool name was provided.
         if (string.IsNullOrWhiteSpace(toolName))
         {
             MessageBox.Show("Tool name is required.");
             return;
         }
 
+        // Inserts new tool into tool table
         using (var conn = new OleDbConnection(_connectionString))
         {
             conn.Open();
@@ -86,8 +91,10 @@ public partial class DepotForm : Form
 
     }
 
+    // Adds a new employee to the database when button is clicked.
     private void buttonAddEmployee_Click(object sender, EventArgs e)
     {
+        // Get user input from form.
         string firstName = txtFirstName.Text.Trim();
         string lastName = txtLastName.Text.Trim();
         string username = txtUsername.Text.Trim();
@@ -95,7 +102,7 @@ public partial class DepotForm : Form
         int skillLevel;
         string role = cmbRoleSelection.SelectedItem?.ToString();
 
-        // Validate inputs
+        // Validate all field have been filled.
         if (string.IsNullOrWhiteSpace(firstName) ||
             string.IsNullOrWhiteSpace(username) ||
             string.IsNullOrWhiteSpace(password) ||
@@ -114,7 +121,7 @@ public partial class DepotForm : Form
             {
                 conn.Open();
 
-                // Optional: Check if username already exists
+                // Check if username already exists, if so inform user to choose another.
                 string checkQuery = "SELECT COUNT(*) FROM EmployeesList WHERE UserName = ?";
                 using (var checkCmd = new OleDbCommand(checkQuery, conn))
                 {
@@ -127,7 +134,7 @@ public partial class DepotForm : Form
                     }
                 }
 
-                // Insert new employee
+                // Insert new employee into database table.
                 string insertQuery = @"
                 INSERT INTO EmployeesList 
                 (FirstName, LastName, UserName, EmployeePassword, EmployeeSkillLevel, Role)
@@ -147,7 +154,7 @@ public partial class DepotForm : Form
                 MessageBox.Show("Employee added successfully!");
             }
 
-            // Clear form
+            // Clear form after submission is completed .
             txtFirstName.Clear();
             txtLastName.Clear();
             txtUsername.Clear();

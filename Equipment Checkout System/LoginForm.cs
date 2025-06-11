@@ -14,6 +14,7 @@ namespace Equipment_Checkout_System
 
         private void Button1_Click(object sender, EventArgs e)
         {
+            // Get user input.
             string inputUserName = textBoxUserName.Text.Trim();
             string inputPassword = textBoxPassword.Text.Trim();
 
@@ -22,6 +23,7 @@ namespace Equipment_Checkout_System
 
             if (user.Success)
             {
+                // Assign user data to SessionManager
                 SessionManager.CurrentUser = user;
                 MessageBox.Show($"Welcome, {SessionManager.CurrentUser.FirstName} {SessionManager.CurrentUser.LastName} ({SessionManager.CurrentUser.Role})!", "Login Successful");
 

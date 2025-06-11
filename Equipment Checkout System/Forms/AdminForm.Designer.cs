@@ -28,19 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
+            buttonOverdueReport = new Button();
+            dgvReport = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dgvReport).BeginInit();
             SuspendLayout();
+            // 
+            // buttonOverdueReport
+            // 
+            buttonOverdueReport.Location = new Point(327, 290);
+            buttonOverdueReport.Name = "buttonOverdueReport";
+            buttonOverdueReport.Size = new Size(112, 34);
+            buttonOverdueReport.TabIndex = 0;
+            buttonOverdueReport.Text = "Overdue";
+            buttonOverdueReport.UseVisualStyleBackColor = true;
+            buttonOverdueReport.Click += buttonOverdueReport_Click;
+            // 
+            // dgvReport
+            // 
+            dgvReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvReport.Location = new Point(210, 36);
+            dgvReport.Name = "dgvReport";
+            dgvReport.RowHeadersWidth = 62;
+            dgvReport.Size = new Size(360, 225);
+            dgvReport.TabIndex = 1;
             // 
             // AdminForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(dgvReport);
+            Controls.Add(buttonOverdueReport);
             Name = "AdminForm";
             Text = "Admin";
             Load += AdminForm_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvReport).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
+
+        private Button buttonOverdueReport;
+        private DataGridView dgvReport;
     }
 }
