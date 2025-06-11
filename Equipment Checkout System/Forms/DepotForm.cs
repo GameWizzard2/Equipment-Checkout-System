@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Equipment_Checkout_System.Data;
+using Equipment_Checkout_System.Services;
 
 namespace Equipment_Checkout_System.Forms;
 
@@ -18,10 +20,14 @@ public partial class DepotForm : Form
 {
     // Centralized database connection string
     private readonly string _connectionString = AppConfig.ConnectionString;
+    private readonly ToolServices _toolService;
+    private readonly EmployeeServices _employeeService;
 
     public DepotForm()
     {
         InitializeComponent();
+        _toolService = new ToolServices(AppConfig.ConnectionString);
+        _employeeService = new EmployeeServices(AppConfig.ConnectionString);
     }
 
     // Executes on form load
@@ -44,41 +50,23 @@ public partial class DepotForm : Form
     private void buttonAddTool_Click(object sender, EventArgs e)
     {
         string toolName = txtToolName.Text.Trim();
-
-        // Verify skill level is selected.
-        if (cmbSkillRequired.SelectedItem == null)
-        {
-            MessageBox.Show("Please select a skill level.");
-            return;
-        }
-
-
-        int skillRequired = Convert.ToInt32(cmbSkillRequired.SelectedItem);
-        decimal toolPrice = numToolPrice.Value;
-
-        // Check if tool name was provided.
         if (string.IsNullOrWhiteSpace(toolName))
         {
             MessageBox.Show("Tool name is required.");
             return;
         }
 
-        // Inserts new tool into tool table
-        using (var conn = new OleDbConnection(_connectionString))
+        if (cmbSkillRequired.SelectedItem == null)
         {
-            conn.Open();
-            string insertQuery = "INSERT INTO Tools(EquipmentName, Status, EquipmentPrice, SkillRequired) VALUES(?, 'New', ?, ?)";
-
-            using (var cmd = new OleDbCommand(insertQuery, conn))
-            {
-                cmd.Parameters.AddWithValue("?", toolName);
-                cmd.Parameters.AddWithValue("?", toolPrice);
-                cmd.Parameters.AddWithValue("?", skillRequired);
-                cmd.ExecuteNonQuery();
-            }
-
-            MessageBox.Show("Tool added successfully!");
+            MessageBox.Show("Please select a skill level.");
+            return;
         }
+
+        int skillRequired = Convert.ToInt32(cmbSkillRequired.SelectedItem);
+        decimal toolPrice = numToolPrice.Value;
+
+        _toolService.AddTool(toolName, toolPrice, skillRequired);
+        MessageBox.Show("Tool added successfully!");
     }
 
     private void cmbSkillRequired_SelectedIndexChanged(object sender, EventArgs e)
@@ -99,7 +87,7 @@ public partial class DepotForm : Form
         string lastName = txtLastName.Text.Trim();
         string username = txtUsername.Text.Trim();
         string password = txtPassword.Text.Trim();
-        int skillLevel;
+        int skillLevel; // Skill level is handled by combo box
         string role = cmbRoleSelection.SelectedItem?.ToString();
 
         // Validate all field have been filled.
@@ -117,42 +105,17 @@ public partial class DepotForm : Form
 
         try
         {
-            using (var conn = new OleDbConnection(AppConfig.ConnectionString))
-            {
-                conn.Open();
-
-                // Check if username already exists, if so inform user to choose another.
-                string checkQuery = "SELECT COUNT(*) FROM EmployeesList WHERE UserName = ?";
-                using (var checkCmd = new OleDbCommand(checkQuery, conn))
-                {
-                    checkCmd.Parameters.AddWithValue("?", username);
-                    int count = (int)checkCmd.ExecuteScalar();
-                    if (count > 0)
+                if (_employeeService.UserNameExists(username)) 
                     {
                         MessageBox.Show("Username already exists. Choose another one.");
                         return;
                     }
-                }
+                
 
-                // Insert new employee into database table.
-                string insertQuery = @"
-                INSERT INTO EmployeesList 
-                (FirstName, LastName, UserName, EmployeePassword, EmployeeSkillLevel, Role)
-                VALUES (?, ?, ?, ?, ?, ?)";
-
-                using (var cmd = new OleDbCommand(insertQuery, conn))
-                {
-                    cmd.Parameters.AddWithValue("?", firstName);
-                    cmd.Parameters.AddWithValue("?", lastName);
-                    cmd.Parameters.AddWithValue("?", username);
-                    cmd.Parameters.AddWithValue("?", password);
-                    cmd.Parameters.AddWithValue("?", skillLevel);
-                    cmd.Parameters.AddWithValue("?", role);
-                    cmd.ExecuteNonQuery();
-                }
-
+                // Add new employee into database table.
+                _employeeService.AddEmployee(firstName, lastName, username, password, skillLevel, role);
                 MessageBox.Show("Employee added successfully!");
-            }
+            
 
             // Clear form after submission is completed .
             txtFirstName.Clear();
