@@ -18,7 +18,11 @@ namespace Equipment_Checkout_System.Forms
     {
         private Employee currentUser;
         private string _connectionString; // Database Connection string
+
         private CheckToolAvailibility _toolAvailabilityService;
+        private readonly AlertService _alertService; // alert service to notify employee of late tools
+
+
 
 
         public EmployeeForm()
@@ -27,6 +31,7 @@ namespace Equipment_Checkout_System.Forms
             currentUser = SessionManager.CurrentUser;
             _connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\ECSCEIS400.accdb";
             _toolAvailabilityService = new CheckToolAvailibility(_connectionString);
+            _alertService = new AlertService(_connectionString);
         }
 
         // checkoutButton Here
@@ -63,6 +68,7 @@ namespace Equipment_Checkout_System.Forms
             RefreshCheckedOutToolList();
             UpdateCheckedOutLabel();
             setlblUserName();
+            CheckForLateTools();
         }
 
         private void labelUser_Click(object sender, EventArgs e)
@@ -79,6 +85,22 @@ namespace Equipment_Checkout_System.Forms
         private void setlblUserName()
         {
             lblUserName.Text = $"User: {currentUser.FirstName} {currentUser.LastName}";
+        }
+
+        private void CheckForLateTools() 
+        {
+            var overdue = _alertService.GetOverdueTools(currentUser.EmployeeID);
+            if (overdue.Count > 0)
+            {
+                var lines = overdue.Select(o =>
+                    $"{o.ToolName}: due {o.ReturnBy:d} ({o.DaysLate} days late)");
+                MessageBox.Show(
+                    $"⚠️ You have overdue tools:\n\n{string.Join("\n", lines)}",
+                    "Overdue Tools Alert",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+            }
         }
 
         private void statusStripUser_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
