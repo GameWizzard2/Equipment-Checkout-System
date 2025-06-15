@@ -1,22 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace Equipment_Checkout_System.Data
 {
     public static class EmployeeQueries
-    {
-        // Check if username exist.
-        public static readonly string CheckUsernameExists = @"
-            SELECT COUNT(*) FROM EmployeesList WHERE UserName = ?";
-     
-        // Insert employee data into database.
-        public static readonly string InsertEmployee = @"
-            INSERT INTO EmployeesList 
-            (FirstName, LastName, UserName, EmployeePassword, EmployeeSkillLevel, Role)
-            VALUES (?, ?, ?, ?, ?, ?)";
-    }
 
+    {
+        /// <summary>
+        /// SQL query to count the number of tools currently checked out by a specific employee.
+        /// </summary>
+        /// <remarks>
+        /// Uses the ? parameter to identify the employee ID and counts only records where CheckedOut is NULL.
+        /// </remarks>
+        public static readonly string CurrentlyCheckedOutToolCount = @"
+            SELECT COUNT(*)
+                FROM Checkouts 
+                WHERE EmployeeID = ? 
+                AND CheckedIN is NULL";
+
+    }
 }

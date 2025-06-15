@@ -30,18 +30,17 @@
         {
             buttonCheckout = new Button();
             buttonCheckin = new Button();
-            labelUser = new Label();
+            lblCurrentNumberofToolsCheckedOut = new Label();
             statusStripUser = new StatusStrip();
-            label2 = new Label();
             labelCheckedOutTools = new Label();
-            label1 = new Label();
             listBoxAvailableTools = new ListBox();
             listBoxCheckedOutTools = new ListBox();
+            lblUserName = new Label();
             SuspendLayout();
             // 
             // buttonCheckout
             // 
-            buttonCheckout.Location = new Point(526, 318);
+            buttonCheckout.Location = new Point(502, 294);
             buttonCheckout.Name = "buttonCheckout";
             buttonCheckout.Size = new Size(112, 34);
             buttonCheckout.TabIndex = 0;
@@ -59,15 +58,15 @@
             buttonCheckin.UseVisualStyleBackColor = true;
             buttonCheckin.Click += buttonCheckin_Click;
             // 
-            // labelUser
+            // lblCurrentNumberofToolsCheckedOut
             // 
-            labelUser.AutoSize = true;
-            labelUser.Location = new Point(129, 77);
-            labelUser.Name = "labelUser";
-            labelUser.Size = new Size(59, 25);
-            labelUser.TabIndex = 2;
-            labelUser.Text = "label1";
-            labelUser.Click += labelUser_Click;
+            lblCurrentNumberofToolsCheckedOut.Location = new Point(21, 61);
+            lblCurrentNumberofToolsCheckedOut.Name = "lblCurrentNumberofToolsCheckedOut";
+            lblCurrentNumberofToolsCheckedOut.Size = new Size(297, 66);
+            lblCurrentNumberofToolsCheckedOut.TabIndex = 2;
+            lblCurrentNumberofToolsCheckedOut.Text = "Label Set";
+            lblCurrentNumberofToolsCheckedOut.TextAlign = ContentAlignment.TopCenter;
+            lblCurrentNumberofToolsCheckedOut.Click += labelUser_Click;
             // 
             // statusStripUser
             // 
@@ -79,39 +78,21 @@
             statusStripUser.Text = "statusStrip1";
             statusStripUser.ItemClicked += statusStripUser_ItemClicked;
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(462, 26);
-            label2.Name = "label2";
-            label2.Size = new Size(227, 25);
-            label2.TabIndex = 4;
-            label2.Text = "Current Tools Checked Out:";
-            label2.Click += label1_Click;
-            // 
             // labelCheckedOutTools
             // 
             labelCheckedOutTools.AutoSize = true;
-            labelCheckedOutTools.Location = new Point(535, 77);
+            labelCheckedOutTools.Location = new Point(456, 102);
             labelCheckedOutTools.Name = "labelCheckedOutTools";
-            labelCheckedOutTools.Size = new Size(59, 25);
+            labelCheckedOutTools.Size = new Size(209, 25);
             labelCheckedOutTools.TabIndex = 5;
-            labelCheckedOutTools.Text = "label1";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(129, 26);
-            label1.Name = "label1";
-            label1.Size = new Size(51, 25);
-            label1.TabIndex = 6;
-            label1.Text = "User:";
+            labelCheckedOutTools.Text = "Select Tool to Check Out:";
+            labelCheckedOutTools.Click += labelCheckedOutTools_Click;
             // 
             // listBoxAvailableTools
             // 
             listBoxAvailableTools.FormattingEnabled = true;
             listBoxAvailableTools.ItemHeight = 25;
-            listBoxAvailableTools.Location = new Point(494, 166);
+            listBoxAvailableTools.Location = new Point(470, 133);
             listBoxAvailableTools.Name = "listBoxAvailableTools";
             listBoxAvailableTools.Size = new Size(180, 129);
             listBoxAvailableTools.TabIndex = 7;
@@ -126,18 +107,27 @@
             listBoxCheckedOutTools.TabIndex = 8;
             listBoxCheckedOutTools.SelectedIndexChanged += listBoxCheckedOutTools_SelectedIndexChanged;
             // 
+            // lblUserName
+            // 
+            lblUserName.Location = new Point(12, 28);
+            lblUserName.Name = "lblUserName";
+            lblUserName.Size = new Size(309, 33);
+            lblUserName.TabIndex = 9;
+            lblUserName.Text = "label3";
+            lblUserName.TextAlign = ContentAlignment.TopCenter;
+            lblUserName.Click += lblUserName_Click;
+            // 
             // EmployeeForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(lblUserName);
             Controls.Add(listBoxCheckedOutTools);
             Controls.Add(listBoxAvailableTools);
-            Controls.Add(label1);
             Controls.Add(labelCheckedOutTools);
-            Controls.Add(label2);
             Controls.Add(statusStripUser);
-            Controls.Add(labelUser);
+            Controls.Add(lblCurrentNumberofToolsCheckedOut);
             Controls.Add(buttonCheckin);
             Controls.Add(buttonCheckout);
             Name = "EmployeeForm";
@@ -151,12 +141,11 @@
 
         private Button buttonCheckout;
         private Button buttonCheckin;
-        private Label labelUser;
+        private Label lblCurrentNumberofToolsCheckedOut;
         private StatusStrip statusStripUser;
-        private Label label2;
         private Label labelCheckedOutTools;
-        private Label label1;
         private ListBox listBoxAvailableTools;
         private ListBox listBoxCheckedOutTools;
+        private Label lblUserName;
     }
 }

@@ -35,7 +35,7 @@
             // 
             // buttonOverdueReport
             // 
-            buttonOverdueReport.Location = new Point(327, 290);
+            buttonOverdueReport.Location = new Point(328, 302);
             buttonOverdueReport.Name = "buttonOverdueReport";
             buttonOverdueReport.Size = new Size(112, 34);
             buttonOverdueReport.TabIndex = 0;
@@ -46,7 +46,7 @@
             // dgvReport
             // 
             dgvReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvReport.Location = new Point(210, 36);
+            dgvReport.Location = new Point(203, 37);
             dgvReport.Name = "dgvReport";
             dgvReport.RowHeadersWidth = 62;
             dgvReport.Size = new Size(360, 225);

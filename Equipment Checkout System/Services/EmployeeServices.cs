@@ -23,7 +23,7 @@ namespace Equipment_Checkout_System.Services
         {
             using var conn = new OleDbConnection(_connStr);
             conn.Open();
-            using var cmd = new OleDbCommand(EmployeeQueries.CheckUsernameExists, conn);
+            using var cmd = new OleDbCommand(DepotQueries.CheckUsernameExists, conn);
             cmd.Parameters.AddWithValue("?", userName);
             return (int)cmd.ExecuteScalar() > 0;
         }
@@ -32,7 +32,7 @@ namespace Equipment_Checkout_System.Services
         {
             using var conn = new OleDbConnection(_connStr);
             conn.Open();
-            using var cmd = new OleDbCommand(EmployeeQueries.InsertEmployee, conn);
+            using var cmd = new OleDbCommand(DepotQueries.InsertEmployee, conn);
             cmd.Parameters.AddWithValue("?", firstName);
             cmd.Parameters.AddWithValue("?", lastName);
             cmd.Parameters.AddWithValue("?", username);
@@ -41,6 +41,8 @@ namespace Equipment_Checkout_System.Services
             cmd.Parameters.AddWithValue("?", role);
             cmd.ExecuteNonQuery();
         }
+
+        
 
     }
 }

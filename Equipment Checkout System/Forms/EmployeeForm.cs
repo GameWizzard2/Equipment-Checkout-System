@@ -17,7 +17,7 @@ namespace Equipment_Checkout_System.Forms
     public partial class EmployeeForm : Form
     {
         private Employee currentUser;
-        private string _connectionString;
+        private string _connectionString; // Database Connection string
         private CheckToolAvailibility _toolAvailabilityService;
 
 
@@ -51,19 +51,34 @@ namespace Equipment_Checkout_System.Forms
             }
             RefreshAvailableToolList();
             RefreshCheckedOutToolList();
+            UpdateCheckedOutLabel();
         }
 
         private void EmployeeForm_Load(object sender, EventArgs e)
         {
-            labelUser.Text = $"{currentUser.FirstName} {currentUser.LastName}";
+            lblCurrentNumberofToolsCheckedOut.Text = $"{currentUser.FirstName} {currentUser.LastName}";
 
             // List available tools to checkout
             RefreshAvailableToolList();
             RefreshCheckedOutToolList();
+            UpdateCheckedOutLabel();
+            setlblUserName();
         }
 
         private void labelUser_Click(object sender, EventArgs e)
         {
+        }
+
+        private void UpdateCheckedOutLabel()
+        {
+            int count = _toolAvailabilityService.GetCurrentlyCheckedOutToolsCount(currentUser.EmployeeID);
+            lblCurrentNumberofToolsCheckedOut.Text =
+                $"Tools Currently Checked Out ({count}):{Environment.NewLine}Select One To Return:";
+        }
+
+        private void setlblUserName()
+        {
+            lblUserName.Text = $"User: {currentUser.FirstName} {currentUser.LastName}";
         }
 
         private void statusStripUser_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -81,7 +96,7 @@ namespace Equipment_Checkout_System.Forms
         {
             listBoxAvailableTools.Items.Clear();
             List<ToolInfo> availableTools = _toolAvailabilityService.GetAvailableTools(currentUser.SkillLevel);
-            
+
             foreach (ToolInfo tool in availableTools)
             {
                 listBoxAvailableTools.Items.Add(tool);
@@ -105,6 +120,7 @@ namespace Equipment_Checkout_System.Forms
             }
             RefreshCheckedOutToolList();
             RefreshAvailableToolList();
+            UpdateCheckedOutLabel();
         }
 
         private void RefreshCheckedOutToolList()
@@ -122,7 +138,17 @@ namespace Equipment_Checkout_System.Forms
 
         private void listBoxCheckedOutTools_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+
+        }
+
+        private void labelCheckedOutTools_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblUserName_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

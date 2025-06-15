@@ -67,11 +67,23 @@ namespace Equipment_Checkout_System.Services
                     }
                 }
             }
-
             return availableTools;
         }
 
 
+        /// <summary>
+        /// Gets the number of tools currently checked out by the given employee.
+        /// </summary>
+        public int GetCurrentlyCheckedOutToolsCount(int employeeId)
+        {
+            using var conn = new OleDbConnection(_connectionString);
+            using var cmd = conn.CreateCommand();
+            cmd.CommandText = Data.EmployeeQueries.CurrentlyCheckedOutToolCount;
+            cmd.Parameters.AddWithValue("?", employeeId);
+
+            conn.Open();
+            return Convert.ToInt32(cmd.ExecuteScalar());
+        }
 
         public List<ToolInfo> GetCheckedOutToolsByUser(int employeeId)
         {

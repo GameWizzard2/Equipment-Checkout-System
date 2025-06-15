@@ -20,5 +20,6 @@ namespace Equipment_Checkout_System.Data
             FROM Tools t
             LEFT JOIN Checkouts c ON t.EquipmentID = c.EquipmentID
             GROUP BY t.EquipmentName";
+
     }
 }

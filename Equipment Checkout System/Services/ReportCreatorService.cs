@@ -19,6 +19,11 @@ namespace Equipment_Checkout_System.Services
             _connectionString = AppConfig.ConnectionString;
         }
 
+        /// <summary>
+        /// Connects to the database and runs the provided SQL query.
+        /// </summary>
+        /// <param name="query">The SQL SELECT query to run against the database.</param>
+        /// <returns>A DataTable containing the query result.</returns>
         public DataTable RunQuery(string query)
         {
             using (var conn = new OleDbConnection(_connectionString))
@@ -27,9 +32,9 @@ namespace Equipment_Checkout_System.Services
                 using (var cmd = new OleDbCommand(query, conn))
                 using (var adapter = new OleDbDataAdapter(cmd))
                 {
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
-                    return dt;
+                    DataTable dt = new DataTable(); // creates an empty data table
+                    adapter.Fill(dt); 
+                    return dt; 
                 }
             }
         }
