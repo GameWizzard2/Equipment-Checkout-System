@@ -71,10 +71,6 @@ namespace Equipment_Checkout_System.Forms
             CheckForLateTools();
         }
 
-        private void labelUser_Click(object sender, EventArgs e)
-        {
-        }
-
         private void UpdateCheckedOutLabel()
         {
             int count = _toolAvailabilityService.GetCurrentlyCheckedOutToolsCount(currentUser.EmployeeID);
@@ -87,7 +83,7 @@ namespace Equipment_Checkout_System.Forms
             lblUserName.Text = $"User: {currentUser.FirstName} {currentUser.LastName}";
         }
 
-        private void CheckForLateTools() 
+        private void CheckForLateTools()
         {
             var overdue = _alertService.GetOverdueTools(currentUser.EmployeeID);
             if (overdue.Count > 0)
@@ -107,12 +103,6 @@ namespace Equipment_Checkout_System.Forms
         {
 
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
 
         private void RefreshAvailableToolList()
         {
@@ -155,22 +145,6 @@ namespace Equipment_Checkout_System.Forms
             {
                 listBoxCheckedOutTools.Items.Add(tool); // ToolInfo.ToString() will display name
             }
-        }
-
-
-        private void listBoxCheckedOutTools_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelCheckedOutTools_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblUserName_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

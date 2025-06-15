@@ -8,10 +8,20 @@ using System.Threading.Tasks;
 
 namespace Equipment_Checkout_System.Services
 {
+    /// <summary>
+    /// Provides functionality to detect and retrieve overdue equipment
+    /// checked out by employees.
+    /// </summary>
     public class AlertService
     {
         private readonly string _connectionString;
 
+        /// <summary>
+        /// Initializes a new instance of "AlertService".
+        /// </summary>
+        /// <param name="connectionString">
+        /// OleDb connection string used to access the ECS database.
+        /// </param>
         public AlertService(string connectionString)
         {
             _connectionString = connectionString;

@@ -66,7 +66,6 @@
             lblCurrentNumberofToolsCheckedOut.TabIndex = 2;
             lblCurrentNumberofToolsCheckedOut.Text = "Label Set";
             lblCurrentNumberofToolsCheckedOut.TextAlign = ContentAlignment.TopCenter;
-            lblCurrentNumberofToolsCheckedOut.Click += labelUser_Click;
             // 
             // statusStripUser
             // 
@@ -86,7 +85,6 @@
             labelCheckedOutTools.Size = new Size(209, 25);
             labelCheckedOutTools.TabIndex = 5;
             labelCheckedOutTools.Text = "Select Tool to Check Out:";
-            labelCheckedOutTools.Click += labelCheckedOutTools_Click;
             // 
             // listBoxAvailableTools
             // 
@@ -105,7 +103,6 @@
             listBoxCheckedOutTools.Name = "listBoxCheckedOutTools";
             listBoxCheckedOutTools.Size = new Size(180, 129);
             listBoxCheckedOutTools.TabIndex = 8;
-            listBoxCheckedOutTools.SelectedIndexChanged += listBoxCheckedOutTools_SelectedIndexChanged;
             // 
             // lblUserName
             // 
@@ -115,7 +112,6 @@
             lblUserName.TabIndex = 9;
             lblUserName.Text = "label3";
             lblUserName.TextAlign = ContentAlignment.TopCenter;
-            lblUserName.Click += lblUserName_Click;
             // 
             // EmployeeForm
             // 
