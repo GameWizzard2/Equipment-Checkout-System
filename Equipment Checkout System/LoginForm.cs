@@ -35,10 +35,6 @@ namespace Equipment_Checkout_System
                         new AdminForm().Show();
                         break;
 
-                    case "supervisor":
-                        new SupervisorForm().Show();
-                        break;
-
                     case "depotemployee":
                         new DepotForm().Show();
                         break;
