@@ -105,17 +105,17 @@ public partial class DepotForm : Form
 
         try
         {
-                if (_employeeService.UserNameExists(username)) 
-                    {
-                        MessageBox.Show("Username already exists. Choose another one.");
-                        return;
-                    }
-                
+            if (_employeeService.UserNameExists(username))
+            {
+                MessageBox.Show("Username already exists. Choose another one.");
+                return;
+            }
 
-                // Add new employee into database table.
-                _employeeService.AddEmployee(firstName, lastName, username, password, skillLevel, role);
-                MessageBox.Show("Employee added successfully!");
-            
+
+            // Add new employee into database table.
+            _employeeService.AddEmployee(firstName, lastName, username, password, skillLevel, role);
+            MessageBox.Show("Employee added successfully!");
+
 
             // Clear form after submission is completed .
             txtFirstName.Clear();
@@ -129,5 +129,10 @@ public partial class DepotForm : Form
         {
             MessageBox.Show("Error: " + ex.Message);
         }
+    }
+
+    private void tabPage2_Click(object sender, EventArgs e)
+    {
+
     }
 }

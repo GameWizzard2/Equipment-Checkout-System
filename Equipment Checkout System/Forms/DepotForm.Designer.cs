@@ -49,12 +49,18 @@
             labelPassword = new Label();
             labelEmployeeSkill = new Label();
             labelRole = new Label();
+            tabControl = new TabControl();
+            tabPage1 = new TabPage();
+            tabPage2 = new TabPage();
             ((System.ComponentModel.ISupportInitialize)numToolPrice).BeginInit();
+            tabControl.SuspendLayout();
+            tabPage1.SuspendLayout();
+            tabPage2.SuspendLayout();
             SuspendLayout();
             // 
             // buttonAddTool
             // 
-            buttonAddTool.Location = new Point(244, 264);
+            buttonAddTool.Location = new Point(169, 219);
             buttonAddTool.Name = "buttonAddTool";
             buttonAddTool.Size = new Size(158, 34);
             buttonAddTool.TabIndex = 0;
@@ -64,14 +70,14 @@
             // 
             // txtToolName
             // 
-            txtToolName.Location = new Point(220, 103);
+            txtToolName.Location = new Point(260, 69);
             txtToolName.Name = "txtToolName";
             txtToolName.Size = new Size(150, 31);
             txtToolName.TabIndex = 1;
             // 
             // numToolPrice
             // 
-            numToolPrice.Location = new Point(220, 207);
+            numToolPrice.Location = new Point(260, 173);
             numToolPrice.Name = "numToolPrice";
             numToolPrice.Size = new Size(180, 31);
             numToolPrice.TabIndex = 2;
@@ -79,7 +85,7 @@
             // cmbSkillRequired
             // 
             cmbSkillRequired.FormattingEnabled = true;
-            cmbSkillRequired.Location = new Point(220, 156);
+            cmbSkillRequired.Location = new Point(260, 122);
             cmbSkillRequired.Name = "cmbSkillRequired";
             cmbSkillRequired.Size = new Size(182, 33);
             cmbSkillRequired.TabIndex = 3;
@@ -88,7 +94,7 @@
             // labelToolName
             // 
             labelToolName.AutoSize = true;
-            labelToolName.Location = new Point(59, 103);
+            labelToolName.Location = new Point(99, 69);
             labelToolName.Name = "labelToolName";
             labelToolName.Size = new Size(143, 25);
             labelToolName.TabIndex = 4;
@@ -98,7 +104,7 @@
             // labelSelectSkill
             // 
             labelSelectSkill.AutoSize = true;
-            labelSelectSkill.Location = new Point(22, 156);
+            labelSelectSkill.Location = new Point(62, 122);
             labelSelectSkill.Name = "labelSelectSkill";
             labelSelectSkill.Size = new Size(180, 25);
             labelSelectSkill.TabIndex = 5;
@@ -107,7 +113,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(13, 209);
+            label3.Location = new Point(53, 175);
             label3.Name = "label3";
             label3.Size = new Size(196, 25);
             label3.TabIndex = 6;
@@ -115,7 +121,7 @@
             // 
             // buttonAddEmployee
             // 
-            buttonAddEmployee.Location = new Point(868, 318);
+            buttonAddEmployee.Location = new Point(178, 270);
             buttonAddEmployee.Name = "buttonAddEmployee";
             buttonAddEmployee.Size = new Size(154, 34);
             buttonAddEmployee.TabIndex = 7;
@@ -125,22 +131,22 @@
             // 
             // txtFirstName
             // 
-            txtFirstName.Location = new Point(779, 64);
+            txtFirstName.Location = new Point(159, 16);
             txtFirstName.Name = "txtFirstName";
-            txtFirstName.Size = new Size(150, 31);
+            txtFirstName.Size = new Size(201, 31);
             txtFirstName.TabIndex = 8;
             // 
             // txtLastName
             // 
-            txtLastName.Location = new Point(986, 64);
+            txtLastName.Location = new Point(159, 53);
             txtLastName.Name = "txtLastName";
-            txtLastName.Size = new Size(150, 31);
+            txtLastName.Size = new Size(201, 31);
             txtLastName.TabIndex = 9;
             // 
             // labelUserCreation
             // 
             labelUserCreation.AutoSize = true;
-            labelUserCreation.Location = new Point(904, 109);
+            labelUserCreation.Location = new Point(205, 90);
             labelUserCreation.Name = "labelUserCreation";
             labelUserCreation.Size = new Size(106, 25);
             labelUserCreation.TabIndex = 10;
@@ -148,38 +154,38 @@
             // 
             // txtUsername
             // 
-            txtUsername.Location = new Point(776, 182);
+            txtUsername.Location = new Point(159, 118);
             txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(150, 31);
+            txtUsername.Size = new Size(201, 31);
             txtUsername.TabIndex = 11;
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(983, 182);
+            txtPassword.Location = new Point(159, 155);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(150, 31);
+            txtPassword.Size = new Size(201, 31);
             txtPassword.TabIndex = 12;
             // 
             // cmbRoleSelection
             // 
             cmbRoleSelection.FormattingEnabled = true;
-            cmbRoleSelection.Location = new Point(858, 266);
+            cmbRoleSelection.Location = new Point(159, 231);
             cmbRoleSelection.Name = "cmbRoleSelection";
-            cmbRoleSelection.Size = new Size(182, 33);
+            cmbRoleSelection.Size = new Size(201, 33);
             cmbRoleSelection.TabIndex = 13;
             // 
             // cmbSkillLevelSelection
             // 
             cmbSkillLevelSelection.FormattingEnabled = true;
-            cmbSkillLevelSelection.Location = new Point(858, 227);
+            cmbSkillLevelSelection.Location = new Point(159, 192);
             cmbSkillLevelSelection.Name = "cmbSkillLevelSelection";
-            cmbSkillLevelSelection.Size = new Size(182, 33);
+            cmbSkillLevelSelection.Size = new Size(201, 33);
             cmbSkillLevelSelection.TabIndex = 14;
             // 
             // labelFirstName
             // 
             labelFirstName.AutoSize = true;
-            labelFirstName.Location = new Point(819, 36);
+            labelFirstName.Location = new Point(49, 16);
             labelFirstName.Name = "labelFirstName";
             labelFirstName.Size = new Size(101, 25);
             labelFirstName.TabIndex = 15;
@@ -188,7 +194,7 @@
             // labelLastName
             // 
             labelLastName.AutoSize = true;
-            labelLastName.Location = new Point(1009, 36);
+            labelLastName.Location = new Point(40, 53);
             labelLastName.Name = "labelLastName";
             labelLastName.Size = new Size(99, 25);
             labelLastName.TabIndex = 16;
@@ -197,7 +203,7 @@
             // labelUserName
             // 
             labelUserName.AutoSize = true;
-            labelUserName.Location = new Point(792, 154);
+            labelUserName.Location = new Point(50, 121);
             labelUserName.Name = "labelUserName";
             labelUserName.Size = new Size(103, 25);
             labelUserName.TabIndex = 17;
@@ -206,7 +212,7 @@
             // labelPassword
             // 
             labelPassword.AutoSize = true;
-            labelPassword.Location = new Point(1017, 154);
+            labelPassword.Location = new Point(59, 161);
             labelPassword.Name = "labelPassword";
             labelPassword.Size = new Size(91, 25);
             labelPassword.TabIndex = 18;
@@ -215,7 +221,7 @@
             // labelEmployeeSkill
             // 
             labelEmployeeSkill.AutoSize = true;
-            labelEmployeeSkill.Location = new Point(761, 230);
+            labelEmployeeSkill.Location = new Point(62, 195);
             labelEmployeeSkill.Name = "labelEmployeeSkill";
             labelEmployeeSkill.Size = new Size(91, 25);
             labelEmployeeSkill.TabIndex = 19;
@@ -224,44 +230,80 @@
             // labelRole
             // 
             labelRole.AutoSize = true;
-            labelRole.Location = new Point(726, 269);
+            labelRole.Location = new Point(27, 234);
             labelRole.Name = "labelRole";
             labelRole.Size = new Size(126, 25);
             labelRole.TabIndex = 20;
             labelRole.Text = "Role Selection:";
             // 
+            // tabControl
+            // 
+            tabControl.Controls.Add(tabPage1);
+            tabControl.Controls.Add(tabPage2);
+            tabControl.Location = new Point(2, 2);
+            tabControl.Name = "tabControl";
+            tabControl.SelectedIndex = 0;
+            tabControl.Size = new Size(517, 388);
+            tabControl.TabIndex = 21;
+            // 
+            // tabPage1
+            // 
+            tabPage1.Controls.Add(numToolPrice);
+            tabPage1.Controls.Add(buttonAddTool);
+            tabPage1.Controls.Add(txtToolName);
+            tabPage1.Controls.Add(cmbSkillRequired);
+            tabPage1.Controls.Add(labelToolName);
+            tabPage1.Controls.Add(labelSelectSkill);
+            tabPage1.Controls.Add(label3);
+            tabPage1.Location = new Point(4, 34);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(509, 350);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "Add Tool";
+            tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            tabPage2.Controls.Add(labelUserName);
+            tabPage2.Controls.Add(labelRole);
+            tabPage2.Controls.Add(buttonAddEmployee);
+            tabPage2.Controls.Add(labelEmployeeSkill);
+            tabPage2.Controls.Add(txtFirstName);
+            tabPage2.Controls.Add(labelPassword);
+            tabPage2.Controls.Add(txtLastName);
+            tabPage2.Controls.Add(labelUserCreation);
+            tabPage2.Controls.Add(labelLastName);
+            tabPage2.Controls.Add(txtUsername);
+            tabPage2.Controls.Add(labelFirstName);
+            tabPage2.Controls.Add(txtPassword);
+            tabPage2.Controls.Add(cmbSkillLevelSelection);
+            tabPage2.Controls.Add(cmbRoleSelection);
+            tabPage2.Location = new Point(4, 34);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(509, 350);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "Add Employee";
+            tabPage2.UseVisualStyleBackColor = true;
+            tabPage2.Click += tabPage2_Click;
+            // 
             // DepotForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1178, 389);
-            Controls.Add(labelRole);
-            Controls.Add(labelEmployeeSkill);
-            Controls.Add(labelPassword);
-            Controls.Add(labelUserName);
-            Controls.Add(labelLastName);
-            Controls.Add(labelFirstName);
-            Controls.Add(cmbSkillLevelSelection);
-            Controls.Add(cmbRoleSelection);
-            Controls.Add(txtPassword);
-            Controls.Add(txtUsername);
-            Controls.Add(labelUserCreation);
-            Controls.Add(txtLastName);
-            Controls.Add(txtFirstName);
-            Controls.Add(buttonAddEmployee);
-            Controls.Add(label3);
-            Controls.Add(labelSelectSkill);
-            Controls.Add(labelToolName);
-            Controls.Add(cmbSkillRequired);
-            Controls.Add(numToolPrice);
-            Controls.Add(txtToolName);
-            Controls.Add(buttonAddTool);
+            ClientSize = new Size(507, 383);
+            Controls.Add(tabControl);
             Name = "DepotForm";
             Text = "Depot Assistant";
             Load += DepotForm_Load;
             ((System.ComponentModel.ISupportInitialize)numToolPrice).EndInit();
+            tabControl.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
+            tabPage1.PerformLayout();
+            tabPage2.ResumeLayout(false);
+            tabPage2.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -287,5 +329,8 @@
         private Label labelPassword;
         private Label labelEmployeeSkill;
         private Label labelRole;
+        private TabControl tabControl;
+        private TabPage tabPage1;
+        private TabPage tabPage2;
     }
 }
