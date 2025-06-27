@@ -30,5 +30,10 @@ namespace Equipment_Checkout_System.Forms
         {
             dgvReport.DataSource = reportService.RunQuery(ReportQueries.OverdueCheckouts);
         }
+
+        private void buttonCheckedOutTools_Click(object sender, EventArgs e)
+        {
+            dgvReport.DataSource = reportService.RunQuery(ReportQueries.ToolsCurrentlyCheckedOut);
+        }
     }
 }

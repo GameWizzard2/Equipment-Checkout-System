@@ -30,14 +30,15 @@
         {
             buttonOverdueReport = new Button();
             dgvReport = new DataGridView();
+            buttonCheckedOutTools = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvReport).BeginInit();
             SuspendLayout();
             // 
             // buttonOverdueReport
             // 
-            buttonOverdueReport.Location = new Point(328, 302);
+            buttonOverdueReport.Location = new Point(203, 268);
             buttonOverdueReport.Name = "buttonOverdueReport";
-            buttonOverdueReport.Size = new Size(112, 34);
+            buttonOverdueReport.Size = new Size(112, 58);
             buttonOverdueReport.TabIndex = 0;
             buttonOverdueReport.Text = "Overdue";
             buttonOverdueReport.UseVisualStyleBackColor = true;
@@ -52,11 +53,22 @@
             dgvReport.Size = new Size(360, 225);
             dgvReport.TabIndex = 1;
             // 
+            // buttonCheckedOutTools
+            // 
+            buttonCheckedOutTools.Location = new Point(321, 268);
+            buttonCheckedOutTools.Name = "buttonCheckedOutTools";
+            buttonCheckedOutTools.Size = new Size(112, 58);
+            buttonCheckedOutTools.TabIndex = 2;
+            buttonCheckedOutTools.Text = "Checked Out";
+            buttonCheckedOutTools.UseVisualStyleBackColor = true;
+            buttonCheckedOutTools.Click += buttonCheckedOutTools_Click;
+            // 
             // AdminForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(buttonCheckedOutTools);
             Controls.Add(dgvReport);
             Controls.Add(buttonOverdueReport);
             Name = "AdminForm";
@@ -70,5 +82,6 @@
 
         private Button buttonOverdueReport;
         private DataGridView dgvReport;
+        private Button buttonCheckedOutTools;
     }
 }

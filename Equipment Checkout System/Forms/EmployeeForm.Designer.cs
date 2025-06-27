@@ -60,7 +60,7 @@
             // 
             // lblCurrentNumberofToolsCheckedOut
             // 
-            lblCurrentNumberofToolsCheckedOut.Location = new Point(21, 61);
+            lblCurrentNumberofToolsCheckedOut.Location = new Point(12, 73);
             lblCurrentNumberofToolsCheckedOut.Name = "lblCurrentNumberofToolsCheckedOut";
             lblCurrentNumberofToolsCheckedOut.Size = new Size(297, 66);
             lblCurrentNumberofToolsCheckedOut.TabIndex = 2;
@@ -106,7 +106,7 @@
             // 
             // lblUserName
             // 
-            lblUserName.Location = new Point(12, 28);
+            lblUserName.Location = new Point(0, 9);
             lblUserName.Name = "lblUserName";
             lblUserName.Size = new Size(309, 33);
             lblUserName.TabIndex = 9;

@@ -21,5 +21,20 @@ namespace Equipment_Checkout_System.Data
             LEFT JOIN Checkouts c ON t.EquipmentID = c.EquipmentID
             GROUP BY t.EquipmentName";
 
+        public static string ToolsCurrentlyCheckedOut = @"
+           SELECT 
+                T.EquipmentID,
+                T.EquipmentName,
+                E.FirstName & ' ' & E.LastName AS EmployeeName,
+                C.CheckedOut,
+                C.ReturnBy
+            FROM 
+                ((Checkouts AS C
+                INNER JOIN Tools AS T ON C.EquipmentID = T.EquipmentID)
+                INNER JOIN EmployeesList AS E ON C.EmployeeID = E.EmployeeID)
+            WHERE 
+                C.ReturnedBy IS NULL;
+            ";
+
     }
 }
